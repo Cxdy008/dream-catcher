@@ -1,12 +1,23 @@
 import OpenAI from 'openai';
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-  });
+import dotenv from 'dotenv';
+dotenv.config();
 
-// Call OpenAI API for dream interpretation
+const openai = new OpenAI({
+  // Point to OpenRouter API endpoint
+  baseURL: 'https://openrouter.ai/api/v1',
+  // Use the environment variable for the OpenRouter API key
+  apiKey: process.env.OPENROUTER_API_KEY,
+  // Required headers for OpenRouter (referer and app name)
+  defaultHeaders: {
+    'HTTP-Referer': process.env.OPENROUTER_REFERRER || 'https://your-app.example.com',
+    'HTTP-X-Title': process.env.OPENROUTER_APP_NAME || 'Dream Catcher',
+  },
+});
+
+// Call the AI provider (OpenAI-compatible endpoint via OpenRouter)
 export async function getDreamInterpretation(dreamText) {
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error('Server misconfigured: OPENAI_API_KEY is missing');
+  if (!process.env.OPENROUTER_API_KEY) {
+    throw new Error('Server misconfigured: OPENROUTER_API_KEY is missing');
   }
 
   const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
