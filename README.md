@@ -1,6 +1,6 @@
 # Dream Journal App
 
-A full-stack web application that allows users to record their dreams and receive AI-powered interpretations using Claude.
+A full-stack web application that allows users to record their dreams and receive AI-powered interpretations using OpenAI.
 
 ## Features
 
@@ -17,16 +17,16 @@ A full-stack web application that allows users to record their dreams and receiv
 - **Backend**: Node.js, Express
 - **Database**: SQLite (better-sqlite3)
 - **Frontend**: HTML, CSS, Vanilla JavaScript
-- **AI**: Anthropic Claude API
+- **AI**: OpenRouter (OpenAI-compatible API)
 
 ## Project Structure
 
 ```
-dream-journal/
+dream-catcher/
 ├── server.js           # Express server and API routes
 ├── package.json        # Dependencies and scripts
-├── .env               # Environment variables (create this)
-├── .env.example       # Example env file
+├── .env               # Environment variables (required)
+├── .env.example       # Example env file (template)
 ├── dreams.db          # SQLite database (auto-created)
 └── public/
     ├── index.html     # Frontend HTML
@@ -50,14 +50,14 @@ Create a `.env` file in the root directory:
 cp .env.example .env
 ```
 
-Edit `.env` and add your Anthropic API key:
+Edit `.env` and add your OpenRouter API key:
 
 ```
-ANTHROPIC_API_KEY=your_api_key_here
-PORT=3000
+OPENROUTER_API_KEY=sk-or-your_api_key_here
+PORT=3001
 ```
 
-Get your API key from: https://console.anthropic.com/
+Get your API key from: https://openrouter.ai/keys
 
 ### 3. Run the Application
 
@@ -71,7 +71,7 @@ Production mode:
 npm start
 ```
 
-The app will be available at `http://localhost:3000`
+The app will be available at `http://localhost:3001`
 
 ## API Endpoints
 
@@ -92,7 +92,7 @@ Make sure your code is in a Git repository (GitHub, GitLab, etc.)
 2. Click "New +" and select "Web Service"
 3. Connect your repository
 4. Configure the service:
-   - **Name**: dream-journal (or your choice)
+   - **Name**: dream-catcher (or your choice)
    - **Environment**: Node
    - **Build Command**: `npm install`
    - **Start Command**: `npm start`
@@ -100,7 +100,9 @@ Make sure your code is in a Git repository (GitHub, GitLab, etc.)
 ### 3. Add Environment Variables
 
 In the Render dashboard, add:
-- `ANTHROPIC_API_KEY`: Your Anthropic API key
+- `OPENROUTER_API_KEY`: Your OpenRouter API key
+- `OPENROUTER_REFERRER`: Your app's URL (optional but recommended)
+- `OPENROUTER_APP_NAME`: App name (optional but recommended)
 
 ### 4. Deploy
 
